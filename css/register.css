@@ -72,6 +72,13 @@ body{
     transition: color 100ms, background-color 100ms;
     font-weight: bold;
     color: #0e454d;
+   width: 300px;
+}
+
+.user-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-login:hover{

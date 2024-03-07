@@ -154,11 +154,18 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="col">
                         <label for="Password">Password:</label>
-                        <input type="password" name="emp_pass" class="form-control" autofocus required>
+                        <div class="input-group">
+                            <input type="password" name="emp_pass" class="form-control" autofocus required>
+                            <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                        </div>
+
                     </div>
                     <div class="col">
                         <label for="ConfirmPassword">Confirm Password:</label>
-                        <input type="password" name="cpassword" class="form-control" autofocus required>
+                        <div class="input-group">
+                            <input type="password" name="emp_pass" class="form-control" autofocus required>
+                            <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                        </div>
                     </div>
                     <div class="mb-3"></div>
                 </div>
@@ -167,7 +174,7 @@ if (isset($_POST['submit'])) {
                     <p>Already have an account? <a href="index.php" class="reg-link">Login now!</a> </p>
                 </div>
                 <div class="user-btn mx-2">
-                    <button class="btn-login" name="submit" type="submit">SIGN IN</button>
+                    <button class="btn-login" name="submit" type="submit">REGISTER</button>
                 </div>
             </form>
         </div>
