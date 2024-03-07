@@ -13,7 +13,6 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     height: 90vh;
     min-width: 500px;
 }
@@ -21,7 +20,6 @@ body{
 .logo-container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     margin-bottom: 10px;
     color: white;
@@ -30,7 +28,8 @@ body{
 
 
 .tskm-logo{
-    max-height: 300px;
+    margin-top: 20px;
+    max-height: 150px;
     background-color: transparent;
 }
 
@@ -47,6 +46,11 @@ body{
     color: white;
     border-radius: 5px;
     box-shadow: 5px 5px 20px black;
+}
+
+.form-login{
+    /*For 50px spacing of left and right*/
+    padding: 0 50px;
 }
 
 .user-container{
@@ -67,6 +71,7 @@ body{
     border: none;
     transition: color 100ms, background-color 100ms;
     font-weight: bold;
+    color: #0e454d;
 }
 
 .btn-login:hover{

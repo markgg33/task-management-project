@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+body{
+    background-image: linear-gradient(to right, rgba(255,0,0,0), rgba(14, 69, 77,1));
+}
+
+.main-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    min-width: 500px;
+}
+
+.logo-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+
+.tskm-logo{
+    max-height: 150px;
+    background-color: transparent;
+}
+
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    background-color: #949BA0;
+    border-top: 6px solid #0e454d;
+    padding: 0 20px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    min-width: 450px;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px black;
+}
+
+.user-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.reg-link{
+    text-decoration: none;
+    color: #0e454d;
+    font-weight: bold;
+}
+
+.btn-login{
+    padding: 10px 20px;
+    background-color: #A5CCD1;
+    border-radius: 10px;
+    border: none;
+    transition: color 100ms, background-color 100ms;
+    font-weight: bold;
+    color: #0e454d;
+}
+
+.btn-login:hover{
+    color: white;
+    background-color: #627c80;
+}
+
+.my-footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0e454d;
+    height: 10vh;
+    color: white;
+}
+
