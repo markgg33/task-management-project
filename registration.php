@@ -145,6 +145,22 @@ if (isset($_POST['submit'])) {
                             <input type="text" class="form-control" name="nationality" autofocus required>
                         </div>
                     </div>
+                    <div class="mb-3"></div>
+                </div>
+                <div class="row gx-3">
+                    <div class="col">
+                        <label for="DateOfBirth">Date of Birth:</label>
+                        <input type="date" name="dob" class="form-control" autofocus required>
+                    </div>
+                    <div class="col">
+                        <label for="Password">Password:</label>
+                        <input type="password" name="emp_pass" class="form-control" autofocus required>
+                    </div>
+                    <div class="col">
+                        <label for="ConfirmPassword">Confirm Password:</label>
+                        <input type="password" name="cpassword" class="form-control" autofocus required>
+                    </div>
+                    <div class="mb-3"></div>
                 </div>
                 <hr>
                 <div class="text-center">
