@@ -6,7 +6,7 @@ include 'config.php';
 
 if (isset($_POST['submit'])) {
     // Sanitize and validate input data
-    $emp_code = mysqli_real_escape_string($conn, $_POST['emp_code']);
+    $emp_username = mysqli_real_escape_string($conn, $_POST['emp_username']);
     $emp_pass = mysqli_real_escape_string($conn, $_POST['emp_pass']); // Hash the password
     $first_name = mysqli_real_escape_string($conn, $_POST['first_name']);
     $last_name = mysqli_real_escape_string($conn, $_POST['last_name']);
@@ -35,9 +35,9 @@ if (isset($_POST['submit'])) {
         // Move the uploaded file to the specified location
         if (move_uploaded_file($_FILES["photo"]["tmp_name"], $targetFilePath)) {
             // Insert the file path into the database
-            $insert = "INSERT INTO login_users(emp_code, emp_pass, first_name, last_name, dob, gender, status, nationality, 
+            $insert = "INSERT INTO login_users(emp_username, emp_pass, first_name, last_name, dob, gender, status, nationality, 
                 address, city, state, country, email, mobile, emp_type, joining_date, department, photo, created, usertype) 
-                VALUES ('$emp_code', '$emp_pass', '$first_name', '$last_name', '$dob', '$gender', '$status', '$nationality',
+                VALUES ('$emp_username', '$emp_pass', '$first_name', '$last_name', '$dob', '$gender', '$status', '$nationality',
                 '$address', '$city', '$state', '$country', '$email', '$mobile', '$emp_type', '$joining_date', '$department',
                 '$targetFilePath', NOW() , '$usertype')";
 
@@ -87,7 +87,7 @@ if (isset($_POST['submit'])) {
         </div>
 
         <div class="container form-container">
-            <form action="#" class="form-login">
+            <form action="#" class="form-login" method="POST" enctype="multipart/form-data">
                 <div class="row gx-3">
                     <div class="col">
                         <label for="Username">Username:</label>
@@ -105,6 +105,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="mb-3"></div>
                 </div>
+
                 <div class="row gx-3">
                     <div class="col">
                         <label for="FirstName">First Name:</label>
@@ -120,6 +121,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="mb-3"></div>
                 </div>
+
                 <div class="row gx-3">
                     <div class="col">
                         <label for="Gender">Gender:</label>
@@ -147,6 +149,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="mb-3"></div>
                 </div>
+
                 <div class="row gx-3">
                     <div class="col">
                         <label for="DateOfBirth">Date of Birth:</label>
@@ -169,6 +172,88 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="mb-3"></div>
                 </div>
+
+                <div class="row gx-3">
+                    <div class="col">
+                        <label for="Address">Address:</label>
+                        <input type="text" name="address" class="form-control" autofocus required>
+                    </div>
+                    <div class="col">
+                        <label for="City">City:</label>
+                        <div class="input-group">
+                            <input type="text" name="city" class="form-control" autofocus required>
+                        </div>
+
+                    </div>
+                    <div class="col">
+                        <label for="State">State:</label>
+                        <div class="input-group">
+                            <input type="text" name="state" class="form-control">
+                        </div>
+                    </div>
+                    <div class="mb-3"></div>
+                </div>
+
+                <div class="row gx-3">
+                    <div class="col">
+                        <label for="Country">Country:</label>
+                        <input type="text" name="country" class="form-control" autofocus required>
+                    </div>
+
+                    <div class="col">
+                        <label for="Mobile">Mobile:</label>
+                        <div class="input-group">
+                            <input type="text" name="mobile" class="form-control" autofocus required>
+                        </div>
+
+                    </div>
+                    <div class="col">
+                        <label for="EmployeeType">Employee Type:</label>
+                        <select name="emp_type" class="form-select">
+                            <option value="Part Time Employee">Part-time Employee</option>
+                            <option value="Intern">Intern</option>
+                            <option value="Holiday Worker">Holiday Worker</option>
+                            <option value="Permanent Position">Permanent Position</option>
+                        </select>
+                    </div>
+                    <div class="mb-3"></div>
+                </div>
+
+                <div class="row gx-3">
+                    <div class="col">
+                        <label for="JoiningData">Data Joined:</label>
+                        <div class="input-group">
+                            <input type="date" class="form-control" name="joining_date" autofocus required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="Department">Department:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="department" autofocus required>
+                        </div>
+                    </div>
+                    <div class="mb-3"></div>
+                </div>
+
+                <div class="row gx-3">
+                    <div class="col">
+                        <label for="Photo">Photo Upload:</label>
+                        <div class="input-group">
+                            <input type="file" name="photo" class="form-control" accept="image/*" autofocus required>
+                            <span class="input-group-text"><i class="fa-solid fa-camera"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label for="AccountType">Account Type:</label>
+                        <select name="usertype" class="form-select">
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="mb-3"></div>
+                </div>
+
                 <hr>
                 <div class="text-center">
                     <p>Already have an account? <a href="index.php" class="reg-link">Login now!</a> </p>

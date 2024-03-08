@@ -91,7 +91,7 @@ if (isset($_POST['submit'])) {
         </div>
 
         <div class="form-container ">
-            <form action="#" class="form-login">
+            <form action="#" class="form-login" method="POST">
                 <div class="user-container mx-2">
                     <label for="username">Username:</label>
                     <div class="input-group">
