@@ -4,7 +4,6 @@ include "config.php";
 
 session_start();
 
-
 //reference submit
 if (isset($_POST['submit'])) {
 
@@ -18,54 +17,62 @@ if (isset($_POST['submit'])) {
     if (mysqli_num_rows($result) > 0) {
 
         $row = mysqli_fetch_array($result);
-
-        if ($row['usertype'] == 'admin') {
-            $_SESSION['admin_emp_username'] = $row['emp_username'];
-            $_SESSION['admin_first_name'] = $row['first_name'];
-            $_SESSION['admin_last_name'] = $row['last_name'];
-            $_SESSION['admin_dob'] = $row['dob'];
-            $_SESSION['admin_gender'] = $row['gender'];
-            $_SESSION['admin_status'] = $row['status'];
-            $_SESSION['admin_nationality'] = $row['nationality'];
-            $_SESSION['admin_address'] = $row['address'];
-            $_SESSION['admin_city'] = $row['city'];
-            $_SESSION['admin_state'] = $row['state'];
-            $_SESSION['admin_country'] = $row['country'];
-            $_SESSION['admin_email'] = $row['email'];
-            $_SESSION['admin_mobile'] = $row['mobile'];
-            $_SESSION['admin_emp_type'] = $row['emp_type'];
-            $_SESSION['admin_joining_date'] = $row['joining_date'];
-            $_SESSION['admin_department'] = $row['department'];
-            $_SESSION['admin_photo'] = $row['photo'];
-            $_SESSION['admin_created'] = $row['email'];
-            $_SESSION['admin_usertype'] = $row['usertype'];
-            header('location: admin.php');
-        } else if ($row['usertype'] == 'user') {
-            $_SESSION['user_emp_username'] = $row['emp_username'];
-            $_SESSION['user_first_name'] = $row['first_name'];
-            $_SESSION['user_last_name'] = $row['last_name'];
-            $_SESSION['user_dob'] = $row['dob'];
-            $_SESSION['user_gender'] = $row['gender'];
-            $_SESSION['user_status'] = $row['status'];
-            $_SESSION['user_nationality'] = $row['nationality'];
-            $_SESSION['user_address'] = $row['address'];
-            $_SESSION['user_city'] = $row['city'];
-            $_SESSION['user_state'] = $row['state'];
-            $_SESSION['user_country'] = $row['country'];
-            $_SESSION['user_email'] = $row['email'];
-            $_SESSION['user_mobile'] = $row['mobile'];
-            $_SESSION['user_emp_type'] = $row['emp_type'];
-            $_SESSION['user_joining_date'] = $row['joining_date'];
-            $_SESSION['user_department'] = $row['department'];
-            $_SESSION['user_photo'] = $row['photo'];
-            $_SESSION['user_created'] = $row['email'];
-            $_SESSION['user_usertype'] = $row['usertype'];
-            header('location: users.php');
+        if ($row['emp_pass'] == $emp_pass) {
+            if ($row['usertype'] == 'admin') {
+                $_SESSION['admin_emp_username'] = $row['emp_username'];
+                $_SESSION['admin_first_name'] = $row['first_name'];
+                $_SESSION['admin_last_name'] = $row['last_name'];
+                $_SESSION['admin_dob'] = $row['dob'];
+                $_SESSION['admin_gender'] = $row['gender'];
+                $_SESSION['admin_status'] = $row['status'];
+                $_SESSION['admin_nationality'] = $row['nationality'];
+                $_SESSION['admin_address'] = $row['address'];
+                $_SESSION['admin_city'] = $row['city'];
+                $_SESSION['admin_state'] = $row['state'];
+                $_SESSION['admin_country'] = $row['country'];
+                $_SESSION['admin_email'] = $row['email'];
+                $_SESSION['admin_mobile'] = $row['mobile'];
+                $_SESSION['admin_emp_type'] = $row['emp_type'];
+                $_SESSION['admin_joining_date'] = $row['joining_date'];
+                $_SESSION['admin_department'] = $row['department'];
+                $_SESSION['admin_photo'] = $row['photo'];
+                $_SESSION['admin_created'] = $row['email'];
+                $_SESSION['admin_usertype'] = $row['usertype'];
+                header('location: admin.php');
+            } else if ($row['usertype'] == 'user') {
+                $_SESSION['user_emp_username'] = $row['emp_username'];
+                $_SESSION['user_first_name'] = $row['first_name'];
+                $_SESSION['user_last_name'] = $row['last_name'];
+                $_SESSION['user_dob'] = $row['dob'];
+                $_SESSION['user_gender'] = $row['gender'];
+                $_SESSION['user_status'] = $row['status'];
+                $_SESSION['user_nationality'] = $row['nationality'];
+                $_SESSION['user_address'] = $row['address'];
+                $_SESSION['user_city'] = $row['city'];
+                $_SESSION['user_state'] = $row['state'];
+                $_SESSION['user_country'] = $row['country'];
+                $_SESSION['user_email'] = $row['email'];
+                $_SESSION['user_mobile'] = $row['mobile'];
+                $_SESSION['user_emp_type'] = $row['emp_type'];
+                $_SESSION['user_joining_date'] = $row['joining_date'];
+                $_SESSION['user_department'] = $row['department'];
+                $_SESSION['user_photo'] = $row['photo'];
+                $_SESSION['user_created'] = $row['email'];
+                $_SESSION['user_usertype'] = $row['usertype'];
+                header('location: users.php');
+            } else {
+                // Password is incorrect, display error message
+                $error = "Incorrect Password. Please try again.";
+                echo "<script>alert('$error');</script>";
+            }
         } else {
-            $error[] = "Incorrect Credentials. Please try again.";
+            // Username is incorrect, display error message
+            $error = "Incorrect Username. Please try again.";
+            echo "<script>alert('$error');</script>";
         }
     }
 }
+
 
 ?>
 
@@ -91,7 +98,7 @@ if (isset($_POST['submit'])) {
         </div>
 
         <div class="form-container ">
-            <form action="#" class="form-login" method="POST">
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" class="form-login" method="POST">
                 <div class="user-container mx-2">
                     <label for="username">Username:</label>
                     <div class="input-group">

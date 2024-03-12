@@ -7,7 +7,8 @@ include 'config.php';
 if (isset($_POST['submit'])) {
     // Sanitize and validate input data
     $emp_username = mysqli_real_escape_string($conn, $_POST['emp_username']);
-    $emp_pass = mysqli_real_escape_string($conn, $_POST['emp_pass']); // Hash the password
+    $emp_pass = mysqli_real_escape_string($conn, $_POST['emp_pass']);
+    $confirm_password = mysqli_real_escape_string($conn, $_POST['confirm_password']);
     $first_name = mysqli_real_escape_string($conn, $_POST['first_name']);
     $last_name = mysqli_real_escape_string($conn, $_POST['last_name']);
     $dob = $_POST['dob'];
@@ -24,6 +25,12 @@ if (isset($_POST['submit'])) {
     $joining_date = $_POST['joining_date'];
     $department = mysqli_real_escape_string($conn, $_POST['department']);
     $usertype = $_POST['usertype'];
+
+    // Validate if password and confirm password match
+    if ($emp_pass !== $confirm_password) {
+        echo '<script>alert("Password and confirm password do not match.");</script>';
+        exit; // or handle the error in another way
+    }
 
     // Check if a file has been uploaded
     if (isset($_FILES['photo'])) {
@@ -128,7 +135,7 @@ if (isset($_POST['submit'])) {
                         <select class="form-select" aria-label="Default select example" name="gender">
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
-                            <option value="Prefer not to say">Prefer not to say</option>
+                            <option value="preferNTS">Prefer not to say</option>
                         </select>
                     </div>
                     <div class="col">
@@ -158,15 +165,14 @@ if (isset($_POST['submit'])) {
                     <div class="col">
                         <label for="Password">Password:</label>
                         <div class="input-group">
-                            <input type="password" name="emp_pass" class="form-control" autofocus required>
+                            <input type="password" name="emp_pass" class="form-control" placeholder="Enter Password" autofocus required>
                             <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
                         </div>
-
                     </div>
                     <div class="col">
                         <label for="ConfirmPassword">Confirm Password:</label>
                         <div class="input-group">
-                            <input type="password" name="emp_pass" class="form-control" autofocus required>
+                            <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" autofocus required>
                             <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
                         </div>
                     </div>
@@ -248,7 +254,7 @@ if (isset($_POST['submit'])) {
                         <label for="AccountType">Account Type:</label>
                         <select name="usertype" class="form-select">
                             <option value="user">User</option>
-                            <option value="admin">Admin</option>
+                            <option value="admin" disabled>Admin</option>
                         </select>
                     </div>
                     <div class="mb-3"></div>

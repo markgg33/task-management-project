@@ -1,0 +1,58 @@
+<?php
+include('dbcon.php');
+
+if(isset($_POST['name']) && isset($_POST['site'])) {
+    // Retrieve form data
+    $id = $_GET['id_new'];
+    $name = $_POST['name'];
+    $site = $_POST['site'];
+
+    // Update query
+    $query = "UPDATE employees SET name='$name', site='$site' WHERE id='$id'";
+    $result = mysqli_query($connection, $query);
+
+    if($result) {
+        // Update successful, redirect to index.php
+        header("Location: index.php");
+        exit();
+    } else {
+        // Update failed
+        echo "Error updating record: " . mysqli_error($connection);
+    }
+} else {
+    // Form not submitted properly, redirect to index.php
+    header("Location: index.php");
+    exit();
+}
+?>
+
+
+reference for updating 
+
+
+// Set default value for $id
+$id = isset($_GET['id']) ? $_GET['id'] : null;
+
+// Check if 'id' is set and not empty
+if(!empty($id)) {
+    // Fetch data from the database
+    $query = "SELECT * FROM employees WHERE id = '$id'";
+    $result = mysqli_query($connection, $query);
+
+    if (!$result) {
+        die("Query Failed: " . mysqli_error($connection));
+    } else {
+        // Check if any rows are returned
+        if (mysqli_num_rows($result) > 0) {
+            // Fetch the row
+            $row = mysqli_fetch_assoc($result);
+        } else {
+            // Handle case where no row is found
+            die("No record found with ID: $id");
+        }
+    }
+} 
+
+
+
+reference for fetching data
