@@ -26,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_profile'])) {
         $targetDir = "uploads/";
         $photoName = basename($_FILES["new_photo"]["name"]);
         $targetFilePath = $targetDir . $photoName;
+
         // Move the uploaded file to the specified location
         if (move_uploaded_file($_FILES["new_photo"]["tmp_name"], $targetFilePath)) {
             // Update the photo field in the database
@@ -36,7 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_profile'])) {
             $_SESSION['user_photo'] = $targetFilePath;
         }
     }
-
 
     // Retrieve updated profile information from the form
     $new_first_name = mysqli_real_escape_string($conn, $_POST['new_first_name']);
@@ -60,10 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_profile'])) {
 
     // Prepare update query
     $update_query = "UPDATE login_users SET first_name = '$new_first_name', last_name = '$new_last_name', emp_pass = '$new_emp_pass', 
-    dob = '$new_dob', gender = '$new_gender' , status = '$new_status' , nationality = '$new_nationality', 
-    address = '$new_address', city = '$new_city', state = '$new_state', 
-    country = '$new_country',  email = '$new_email', mobile = '$new_mobile' , emp_type = '$new_emp_type', department = '$new_department', usertype = '$new_usertype' 
-    WHERE emp_username = '$user_emp_username'";
+    dob = '$new_dob', gender = '$new_gender' , status = '$new_status' , nationality = '$new_nationality', address = '$new_address', 
+    city = '$new_city', state = '$new_state',  country = '$new_country',  email = '$new_email', mobile = '$new_mobile' , 
+    emp_type = '$new_emp_type', department = '$new_department', usertype = '$new_usertype' WHERE emp_username = '$user_emp_username'";
 
     // Validate if password and confirm password match
     if ($new_emp_pass !== $confirm_new_emp_pass) {
@@ -110,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_profile'])) {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <form action="#" method="post" enctype="multipart/form-data">
                     <div class="container">
                         <div class="row gx-3">
                             <div class="col">
@@ -260,11 +259,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_profile'])) {
 
                         <div class="row gx-3">
                             <div class="col">
-                                <label for="Photo">Photo Upload:</label>
-                                <div class="input-group">
-                                    <input type="file" name="name_photo" class="form-control" accept="image/*" autofocus required>
-                                    <span class="input-group-text"><i class="fa-solid fa-camera"></i></span>
-                                </div>
+                                
                             </div>
                             <div class="col">
                                 <label for="AccountType">Account Type:</label>

@@ -55,6 +55,21 @@
   padding: 30px 0; /* Adjust as needed */
 }
 
+.btn-dropdown {
+  margin-left: 10px;
+  padding: 0 10px;
+  border: 1px solid #a5ccd1;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  transition: color 100ms, background-color 100ms;
+}
+
+.btn-dropdown:hover {
+  color: black;
+  background-color: #a5ccd1;
+}
+
 .btn-buttons {
   display: flex;
   flex-direction: column;
