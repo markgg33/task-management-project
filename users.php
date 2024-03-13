@@ -48,8 +48,8 @@ if (isset($_SESSION['user_emp_username'])) {
                 if (isset($_SESSION['user_photo'])) {
                     $photoPath = $_SESSION['user_photo'];
                     // Display the photo using the retrieved path
-                    echo '<img src="' . $photoPath . '" alt="User Photo" class ="user-photo">';
-                }else {
+                    echo '<img src="' . $photoPath . '" alt="User Photo" class ="user-photo d-none d-lg-inline"';
+                } else {
                     echo 'No photo available!';
                 }
                 ?>
