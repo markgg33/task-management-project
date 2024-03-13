@@ -79,6 +79,7 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Management System</title>
+    <link rel="icon" href="images/task-icon.ico" type="image/x-icon"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/register.css">
     <script src="https://kit.fontawesome.com/92cde7fc6f.js" crossorigin="anonymous"></script>

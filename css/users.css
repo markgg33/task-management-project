@@ -5,6 +5,12 @@
   font-family: "Montserrat", sans-serif;
 }
 
+body {
+  background-image: url("../bgPicture.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .row-content {
   display: flex;
   align-items: center;

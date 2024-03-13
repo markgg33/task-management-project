@@ -3,8 +3,8 @@
 
 
 if (isset($_POST['submit'])) {
-    $task_name = $_POST['task_name'];
-    $task_site = $_POST['task_site'];
+    $task_name = htmlspecialchars($_POST['task_name']);
+    $task_site = htmlspecialchars($_POST['task_site']);
 
     $insert = "INSERT INTO task_list(emp_username, task_name, task_site)VALUES('$emp_username', '$task_name', '$task_site')";
     // Execute the query and handle errors

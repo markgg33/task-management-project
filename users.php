@@ -26,6 +26,7 @@ if (isset($_SESSION['user_emp_username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Management System</title>
     <link rel="stylesheet" href="css/users.css">
+    <link rel="icon" href="images/task-icon.ico" type="image/x-icon"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/92cde7fc6f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
@@ -42,13 +43,13 @@ if (isset($_SESSION['user_emp_username'])) {
                 </a>
             </div>
             <div class="profile-box">
-                <p>Welcome, <?php echo $_SESSION['user_first_name'] ?></p>
+                <p class="d-none d-lg-block">Welcome, <?php echo $_SESSION['user_first_name'] ?></p>
                 <?php
                 //Check if the photo path is available in the session
                 if (isset($_SESSION['user_photo'])) {
                     $photoPath = $_SESSION['user_photo'];
                     // Display the photo using the retrieved path
-                    echo '<img src="' . $photoPath . '" alt="User Photo" class ="user-photo d-none d-lg-inline"';
+                    echo '<img src="' . $photoPath . '" alt="User Photo"  class ="user-photo d-none d-lg-inline">';
                 } else {
                     echo 'No photo available!';
                 }
