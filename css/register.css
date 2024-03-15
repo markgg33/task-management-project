@@ -20,6 +20,7 @@ body {
   align-items: center;
   min-width: 428px;
   margin-bottom: 20px;
+  height: 100vh;
 }
 
 .logo-container {

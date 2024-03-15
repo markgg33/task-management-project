@@ -15,6 +15,34 @@ if (isset($_SESSION['user_emp_username'])) {
     echo "User emp_username is not set in the session.";
 }
 
+
+//from update_modal.php integrated
+
+include "config.php";
+
+// Check if form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_task'])) {
+
+    // Retrieve data from the form
+    $task_id = $_POST['task_id'];
+    $new_task_name = $_POST['new_task_name']; // Corrected variable name
+    $new_task_site = $_POST['new_task_site']; // Corrected variable name
+
+    // Prepare update query
+    $update_query = "UPDATE task_list SET task_name = '$new_task_name', task_site = '$new_task_site' WHERE task_id = '$task_id'";
+
+    // Execute the update query
+    if (mysqli_query($conn, $update_query)) {
+        echo "<script>alert('Task updated successfully!')</script>";
+        // Reload the page to reflect the changes
+        echo "<script>window.location.href = 'users.php';</script>";
+    } else {
+        echo "Error: " . mysqli_error($conn);
+    }
+}
+
+
+
 ?>
 
 
@@ -26,7 +54,7 @@ if (isset($_SESSION['user_emp_username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Management System</title>
     <link rel="stylesheet" href="css/users.css">
-    <link rel="icon" href="images/task-icon.ico" type="image/x-icon"/>
+    <link rel="icon" href="images/task-icon.ico" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/92cde7fc6f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
@@ -111,6 +139,7 @@ if (isset($_SESSION['user_emp_username'])) {
         /*DELETE MODAL */
         include "modals/delete_modal.php";
 
+
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<div class='mb-3'></div>";
@@ -128,11 +157,14 @@ if (isset($_SESSION['user_emp_username'])) {
                 echo "<div class='mb-3'></div>";
                 echo "</div>";
                 //Column Container End
+
+                //update button modal
                 echo "<div class='mb-5'></div>";
                 echo "<div class='action-container'>";
-                echo "<button type='button' class='btn btn-primary btn-choices' data-bs-toggle='modal' data-bs-target='#updateModal'>";
+                echo "<button type='button' class='btn btn-primary btn-choices' data-bs-toggle='modal' data-bs-target='#updateModal" . $row['task_id'] . "'>";
                 echo "<i class='fas fa-pen'></i>";
                 echo "</button>";
+
                 // Delete button triggering modal
                 echo "<button type='button' class='btn btn-danger btn-choices' data-bs-toggle='modal' data-bs-target='#deleteModal" . $row['task_id'] . "'>";
                 echo "<i class='fas fa-trash'></i>";
@@ -162,7 +194,35 @@ if (isset($_SESSION['user_emp_username'])) {
                 echo '</div>';
                 echo '</div>';
 
-                include "modals/update_modal.php";
+                //UPDATE MODAL
+                echo '<div class="modal fade" id="updateModal' . $row['task_id'] . '" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">';
+                echo '<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">';
+                echo '<div class="modal-content">';
+                echo '<div class="modal-header">';
+                echo '<h1 class="modal-title fs-5" id="updateModalLabel">Update Task and Site</h1>';
+                echo '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+                echo '</div>';
+                echo '<div class="modal-body">';
+                echo '<form action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '" method="post">';
+                echo '<input type="hidden" name="task_id" value="' . $row['task_id'] . '">';
+                echo '<div class="col">';
+                echo '<label for="task_name">Task Name:</label>';
+                echo '<input type="text" class="form-control" name="new_task_name" value="' . $row['task_name'] . '">';
+                echo '<div class="mb-3"></div>';
+                echo '</div>';
+                echo '<div class="col">';
+                echo '<label for="task_site">Task Site:</label>';
+                echo '<input type="text" class="form-control" name="new_task_site" value="' . $row['task_site'] . '">';
+                echo '</div>';
+                echo '<div class="modal-footer">';
+                echo '<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>';
+                echo '<button type="submit" class="btn btn-success" name="update_task">Update Task</button>';
+                echo '</div>';
+                echo '</form>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
             }
         }
         ?>
