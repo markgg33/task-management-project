@@ -20,7 +20,7 @@ body {
   align-items: center;
   min-width: 428px;
   margin-bottom: 20px;
-  height: 100vh;
+  height: 110vh;
 }
 
 .logo-container {
@@ -43,6 +43,7 @@ body {
   flex-direction: column;
   background-color: #949ba0;
   border-top: 6px solid #0e454d;
+  margin: 0 10px;
   padding: 0 20px;
   padding-top: 20px;
   padding-bottom: 30px;
